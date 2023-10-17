@@ -28,7 +28,10 @@ fn init_sdl() -> (Canvas<Window>, EventPump, TimerSubsystem) {
         .position_centered()
         .build()
         .unwrap();
-    return (window.into_canvas().build().unwrap(), sdl_context.event_pump().unwrap(), sdl_context.timer().unwrap());
+
+    let mut canvas = window.into_canvas().build().unwrap();
+    canvas.set_blend_mode(sdl2::render::BlendMode::Blend);
+    return (canvas, sdl_context.event_pump().unwrap(), sdl_context.timer().unwrap());
 }
 
 fn main() {
@@ -54,9 +57,10 @@ fn main() {
             Point::new((circle.center.x as f64 + minute_vector.0) as i32, (circle.center.y as f64 + minute_vector.1) as i32));
         let hour_line = shapes::Line::new(Point::new(circle.center.x, circle.center.y), 
             Point::new((circle.center.x as f64 + hour_vector.0) as i32, (circle.center.y as f64 + hour_vector.1) as i32));
-        seconds_line.draw(&mut canvas).unwrap();
-        minutes_line.draw(&mut canvas).unwrap();
-        hour_line.draw(&mut canvas).unwrap();
+        // seconds_line.draw(&mut canvas).unwrap();
+        seconds_line.draw_antialiased(&mut canvas).unwrap();
+        minutes_line.draw_antialiased(&mut canvas).unwrap();
+        hour_line.draw_antialiased(&mut canvas).unwrap();
         canvas.present();
     }
 }
