@@ -99,23 +99,27 @@ impl Line {
                 canvas,
                 Color::RGBA(0, 0, 0, (255.0 * rfpart(yend) * xgap) as u8),
                 Point::new(ypxl2, xpxl2),
-            ).unwrap();
+            )
+            .unwrap();
             set_color_and_draw_point(
                 canvas,
                 Color::RGBA(0, 0, 0, (255.0 * fpart(yend) * xgap) as u8),
                 Point::new(ypxl2 + 1, xpxl2),
-            ).unwrap();
+            )
+            .unwrap();
         } else {
             set_color_and_draw_point(
                 canvas,
                 Color::RGBA(0, 0, 0, (255.0 * rfpart(yend) * xgap) as u8),
                 Point::new(xpxl2, ypxl2),
-            ).unwrap();
+            )
+            .unwrap();
             set_color_and_draw_point(
                 canvas,
                 Color::RGBA(0, 0, 0, (255.0 * fpart(yend) * xgap) as u8),
                 Point::new(xpxl2, ypxl2 + 1),
-            ).unwrap();
+            )
+            .unwrap();
         }
 
         if steep {
